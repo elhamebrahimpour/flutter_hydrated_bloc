@@ -5,9 +5,11 @@ import 'package:flutter_hydrated_bloc/cache_data_test/data/repository/repository
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class TestBloc extends HydratedBloc<TestEvent, TestState> {
-  final TestRepository _repository = TestRepository();
+  final TestRepository _repository;
 
-  TestBloc() : super(InitialState()) {
+  TestBloc({required TestRepository repository})
+      : _repository = repository,
+        super(InitialState()) {
     on<FetchedEvent>((event, emit) async {
       emit(
         FetchingState(_repository.modelnew),
@@ -16,14 +18,28 @@ class TestBloc extends HydratedBloc<TestEvent, TestState> {
 
     on<UpdatedEvent>((event, emit) async {
       var model = _repository.saveFormData(event.formModel);
+      var newState = FetchingState(model);
 
-      emit(FetchingState(model));
+      emit(newState);
+
+      // // Force state serialization
+      // await HydratedBloc.storage.write(id, toJson(newState));
     });
 
     on<DeletedEvent>((event, emit) async {
-      _repository.deleteFormData(id);
+      // print('Before deletion:');
+      // print('In-memory state: $state');
+      // print('Storage content: ${HydratedBloc.storage.read(id)}');
 
+      // Emit InitialState
       emit(InitialState());
+
+      // Clear the storage entry for this bloc
+      // await _repository.deleteFormData(id);
+
+      // print('After deletion:');
+      // print('In-memory state: $state');
+      // print('Storage content: ${HydratedBloc.storage.read(id)}');
     });
   }
 
@@ -34,11 +50,16 @@ class TestBloc extends HydratedBloc<TestEvent, TestState> {
 
   @override
   TestState? fromJson(Map<String, dynamic> json) {
+    // print('Deserializing state: $json');
+    // print('State emitted: $state');
+    // print('Storage content: ${HydratedBloc.storage.read(id)}');
+
     if (json['data'] != null) {
       return FetchingState(
         FormModelParams.fromJson(json['data']),
       );
     }
+
     return InitialState();
   }
 
@@ -50,6 +71,6 @@ class TestBloc extends HydratedBloc<TestEvent, TestState> {
       return {'data': state.formModel.toJson()};
     }
 
-    return null;
+    return {};
   }
 }

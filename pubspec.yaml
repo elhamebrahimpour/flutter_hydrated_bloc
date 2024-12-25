@@ -42,6 +42,10 @@ dependencies:
   flutter_easyloading: ^3.0.5
   equatable: ^2.0.7
 
+  # test
+  mocktail: ^1.0.4
+  bloc_test: ^9.1.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

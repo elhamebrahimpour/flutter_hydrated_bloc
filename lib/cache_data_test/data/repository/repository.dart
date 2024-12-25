@@ -10,7 +10,7 @@ class TestRepository {
     return modelnew;
   }
 
-  void deleteFormData(key) {
-    HydratedBloc.storage.delete(key);
+  Future<void> deleteFormData(key) async {
+    await HydratedBloc.storage.delete(key);
   }
 }

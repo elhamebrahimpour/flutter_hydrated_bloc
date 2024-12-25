@@ -40,7 +40,7 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
   }
 
   Widget bodyWidget() {
-    return BlocBuilder<TestBloc, TestState>(
+    return BlocConsumer<TestBloc, TestState>(
       builder: (context, state) {
         return Column(
           children: [
@@ -92,6 +92,7 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
           ],
         );
       },
+      listener: (BuildContext context, TestState state) {},
     );
   }
 
@@ -99,7 +100,7 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
     BlocProvider.of<TestBloc>(context).add(
       UpdatedEvent(
         FormModelParams(
-          id: DateTime.now().millisecondsSinceEpoch + Random().nextInt(9999999),
+          id: Random().nextInt(9999999),
           title: _params.title,
           description: _params.description,
         ),
