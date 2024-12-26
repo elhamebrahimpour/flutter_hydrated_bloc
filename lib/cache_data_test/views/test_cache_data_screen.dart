@@ -40,7 +40,7 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
   }
 
   Widget bodyWidget() {
-    return BlocConsumer<TestBloc, TestState>(
+    return BlocBuilder<TestBloc, TestState>(
       builder: (context, state) {
         return Column(
           children: [
@@ -92,7 +92,6 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
           ],
         );
       },
-      listener: (BuildContext context, TestState state) {},
     );
   }
 
@@ -108,21 +107,3 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
     );
   }
 }
-
-
-
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: TextField(
-            //     controller: controller,
-            //     style: const TextStyle(color: Colors.white),
-            //     onTapOutside: (value) {
-            //       _persistTextToBloc();
-            //     },
-            //     onEditingComplete: () {
-            //       _persistTextToBloc();
-
-            //       FocusScope.of(context).unfocus();
-            //     },
-            //   ),
-            // ),

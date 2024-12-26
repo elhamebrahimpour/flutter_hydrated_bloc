@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hydrated_bloc/cache_data_test/widgets/custom_button.dart';
 
 class Screen2 extends StatelessWidget {
   const Screen2({super.key});
@@ -15,17 +16,19 @@ class Screen2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'deleted',
+                'deleted state',
                 style: TextStyle(color: Colors.white),
               ),
               const SizedBox(
                 height: 64,
               ),
-              ElevatedButton(
+              CustomButton(
+                title: 'back first page',
                 onPressed: () {
-                  Navigator.pushNamed(context, '/');
+                  print('Hello, every body!');
+
+                  // Navigator.pushNamed(context, '/');
                 },
-                child: const Text('first'),
               ),
             ],
           ),

@@ -4,9 +4,9 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_hydrated_bloc/cache_data_test/data/repository/repository.dart';
 
 import 'cache_data_test/bloc/test_bloc.dart';
-import 'cache_data_test/screen.dart';
-import 'cache_data_test/screen2.dart';
-import 'cache_data_test/test_cache_data_screen.dart';
+import 'cache_data_test/views/screen.dart';
+import 'cache_data_test/views/screen2.dart';
+import 'cache_data_test/views/test_cache_data_screen.dart';
 import 'todo/bloc/todo_bloc.dart';
 
 class MyApp extends StatelessWidget {

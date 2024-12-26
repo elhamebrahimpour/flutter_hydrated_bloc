@@ -1,13 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_hydrated_bloc/cache_data_test/bloc/test_bloc.dart';
+import 'package:flutter_hydrated_bloc/cache_data_test/bloc/test_event.dart';
+import 'package:flutter_hydrated_bloc/cache_data_test/bloc/test_state.dart';
 import 'package:flutter_hydrated_bloc/cache_data_test/data/model/model.dart';
+import 'package:flutter_hydrated_bloc/cache_data_test/data/repository/repository.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../bloc/test_event.dart';
-import '../bloc/test_state.dart';
-import '../data/repository/repository.dart';
 
 class FakeFormModelParams extends Fake implements FormModelParams {}
 
@@ -53,6 +52,7 @@ void main() {
           ),
         ),
       ),
+      // isA => when use equatable
       expect: () => [isA<FetchingState>()],
       verify: (bloc) {
         print(bloc.state); // You can print the state here
