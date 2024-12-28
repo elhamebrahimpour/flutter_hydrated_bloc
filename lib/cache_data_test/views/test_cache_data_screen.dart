@@ -6,6 +6,7 @@ import 'package:flutter_hydrated_bloc/cache_data_test/bloc/test_bloc.dart';
 import 'package:flutter_hydrated_bloc/cache_data_test/bloc/test_event.dart';
 import 'package:flutter_hydrated_bloc/cache_data_test/bloc/test_state.dart';
 import 'package:flutter_hydrated_bloc/cache_data_test/data/model/model.dart';
+import 'package:flutter_hydrated_bloc/cache_data_test/widgets/loading.dart';
 
 class TestCacheDataScreen extends StatefulWidget {
   const TestCacheDataScreen({super.key});
@@ -34,6 +35,7 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Test"),
+        automaticallyImplyLeading: false,
       ),
       body: bodyWidget(),
     );
@@ -81,8 +83,6 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
             ElevatedButton(
               onPressed: () {
                 _persistTextToBloc();
-
-                Navigator.pushNamed(context, '/screen');
               },
               child: const Text('next'),
             ),
@@ -105,5 +105,9 @@ class _TestCacheDataScreenState extends State<TestCacheDataScreen> {
         ),
       ),
     );
+
+    loading().then((_) {
+      Navigator.pushNamed(context, '/screen');
+    });
   }
 }

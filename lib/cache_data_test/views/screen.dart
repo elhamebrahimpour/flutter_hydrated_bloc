@@ -32,8 +32,6 @@ class _ScreenState extends State<Screen> {
               ElevatedButton(
                 onPressed: () {
                   _deleteData();
-
-                  Navigator.pushNamed(context, '/screen2');
                 },
                 child: const Text('next'),
               ),
@@ -46,5 +44,7 @@ class _ScreenState extends State<Screen> {
 
   void _deleteData() {
     BlocProvider.of<TestBloc>(context).add(DeletedEvent());
+
+    Navigator.pushNamed(context, '/screen2');
   }
 }

@@ -25,9 +25,7 @@ class Screen2 extends StatelessWidget {
               CustomButton(
                 title: 'back first page',
                 onPressed: () {
-                  print('Hello, every body!');
-
-                  // Navigator.pushNamed(context, '/');
+                  Navigator.pushReplacementNamed(context, '/');
                 },
               ),
             ],
