@@ -6,24 +6,31 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hydrated_bloc/my_app.dart';
+import 'package:flutter_hydrated_bloc/cache_data_test/views/screen2.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets(
+    'Button clicked',
+    (WidgetTester tester) async {
+      // Build our app and trigger a frame.
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Screen2(),
+        ),
+      );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      // find the button by its text
+      final buttonFinder = find.text('back first page');
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+      // verify the button is present
+      expect(buttonFinder, findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+      // simulate a tap on button
+      await tester.tap(buttonFinder);
+
+      // inform the tester to rebuild the widget
+      await tester.pumpAndSettle();
+    },
+  );
 }
